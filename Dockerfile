@@ -1,6 +1,6 @@
 # TensorFlow & scikit-learn with Python3.6
 FROM python:3.6
-LABEL maintainer “Shiho ASA<asashiho@mail.asa.yokohama>”
+LABEL maintainer “akey”
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -13,6 +13,14 @@ RUN apt-get update && apt-get install -y \
 	gfortran \
     libav-tools \
     python3-setuptools
+
+#this paragraph written by akey newly
+RUN curl -L http://download.osgeo.org/libspatialindex/spatialindex-src-1.8.5.tar.gz | tar xz \
+cd spatialindex-src-1.8.5 \
+./configure \
+make \
+make install \
+ldconfig
 
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
